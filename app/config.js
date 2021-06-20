@@ -1,6 +1,6 @@
 module.exports = {
   api: {
-    host: "http://185.25.50.10:8585/"
+    host: "http://127.0.0.1:8585/"
   },
   aria2: {
     host: "localhost",

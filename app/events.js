@@ -22,7 +22,7 @@ const STATUS = "STATUS";
 
 const createConnection = callback => {
   console.log("on_connect");
-  socket.on(CONNECT, function() {
+  socket.on(CONNECT, function () {
     // FUCKING NOTE
     socket.emit("ROOM", "6666");
     console.log("CONNECTED_TO_ROOM");
@@ -30,7 +30,7 @@ const createConnection = callback => {
   });
 };
 
-const getGlobalStat = (isChange = undefined, callback = () => {}) => {
+const getGlobalStat = (isChange = undefined, callback = () => { }) => {
   aria2
     .call("getGlobalStat")
     .then(i => {
@@ -46,7 +46,7 @@ const getGlobalStat = (isChange = undefined, callback = () => {}) => {
     });
 };
 
-const tellActive = (isChange = undefined, callback = () => {}) => {
+const tellActive = (isChange = undefined, callback = () => { }) => {
   aria2.call("tellActive").then(i => {
     const r = JSON.stringify(i);
     if (!_.isEqual(isChange, r)) {
@@ -56,7 +56,7 @@ const tellActive = (isChange = undefined, callback = () => {}) => {
   });
 };
 
-const tellWaiting = (isChange = undefined, callback = () => {}) => {
+const tellWaiting = (isChange = undefined, callback = () => { }) => {
   aria2.call("tellWaiting", 0, 30).then(i => {
     const r = JSON.stringify(i);
     if (!_.isEqual(isChange, r)) {
@@ -66,7 +66,7 @@ const tellWaiting = (isChange = undefined, callback = () => {}) => {
   });
 };
 
-const tellStopped = (isChange = undefined, callback = () => {}) => {
+const tellStopped = (isChange = undefined, callback = () => { }) => {
   aria2.call("tellStopped", 0, 30).then(i => {
     const r = JSON.stringify(i);
     if (!_.isEqual(isChange, r)) {
@@ -143,7 +143,7 @@ const tellStatus = () => {
     status.ip = status.ip.replace(/ /g, "");
     console.log(status);
     if (!status.ip) {
-      status.ip = "192.168.1.3";
+      status.ip = "127.0.0.1";
     }
     socket.emit(SERVICE, { channel: STATUS, data: status });
   });

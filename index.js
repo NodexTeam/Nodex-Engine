@@ -3,6 +3,7 @@ const express = require("express");
 const socket = require("./modules/socket");
 const events = require("./app/events");
 const jobRegister = require("./modules/common").jobRegister;
+const config = require("./app/config");
 
 const {
   getGlobalStat,
@@ -33,8 +34,9 @@ const {
 
 const app = express();
 
-app.listen(process.env.PORT || 8000, function() {
+app.listen(process.env.PORT || 8000, function () {
   console.log("Listening Download Server -------");
+  console.log(config.api.host);
 });
 
 socket.on("SERVICE", payload => {
@@ -72,7 +74,7 @@ socket.on("ROOM", () => {
   tellStorageInfo();
 });
 
-app.get("/download", function(req, res) {
+app.get("/download", function (req, res) {
   if (req.query.name) {
     var file = __dirname + "/static/" + req.query.name;
 
